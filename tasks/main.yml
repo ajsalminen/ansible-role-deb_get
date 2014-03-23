@@ -1,0 +1,7 @@
+---
+
+  - name: Download ag package for Ubuntu 12.04
+    get_url: url=https://github.com/downloads/ggreer/the_silver_searcher/the-silver-searcher_0.7.3-3_i386.deb dest=/tmp
+
+  - name: Install ag package
+    command: /usr/bin/dpkg -i /tmp/the-silver-searcher_0.7.3-3_i386.deb
