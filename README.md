@@ -4,8 +4,8 @@ ansible-role-deb_install_url
 Description
 ------------
 Extremely simple role for downloading and installing debian packages from URLs
-with ansible and installing with dpkg. I use this to download and install debs
-for the silver searcher (ag) and vagrant for example.
+with ansible. I use this to download and install debs for the silver searcher
+(ag) and vagrant for example.
 
 Example usage
 -------------
