@@ -1,13 +1,18 @@
 ---
 
-  - name: Download packages
-    get_url: url={{item.url}}{{item.filename}} dest=/tmp force=no
-    with_items:
-      packages
+- name: Download packages
+  get_url:
+    url: "{{item.url}}{{item.filename}}"
+    dest: "{{deb_install_url_download_directory}}"
+    force: no
+  with_items:
+    packages
 
-  - name: Install packages
-    command: /usr/bin/dpkg --skip-same-version -i /tmp/{{item.filename}}
-    register: install_result
-    changed_when: "'already installed' not in install_result.stderr"
-    with_items:
-      packages
+- name: Install packages
+  command: >
+    /usr/bin/dpkg --skip-same-version -i
+    "{{deb_install_url_download_directory}}/{{item.filename}}"
+  register: install_result
+  changed_when: "'already installed' not in install_result.stderr"
+  with_items:
+    packages
