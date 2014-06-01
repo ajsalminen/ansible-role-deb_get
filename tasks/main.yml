@@ -1,10 +1,19 @@
 ---
 
-- name: Download packages
+- name: Download packages via HTTP
   get_url:
     url: "{{item.url}}{{item.filename}}"
     dest: "{{deb_install_url_download_directory}}"
     force: no
+  when: item.url is defined
+  with_items:
+    packages
+
+- name: Download packages via rsync
+  synchronize:
+    src: "{{item.rsync}}{{item.filename}}"
+    dest: "{{deb_install_url_download_directory}}"
+  when: item.rsync is defined
   with_items:
     packages
 
