@@ -10,9 +10,7 @@
     packages
 
 - name: Download packages via rsync
-  synchronize:
-    src: "{{item.rsync}}{{item.filename}}"
-    dest: "{{deb_install_url_download_directory}}"
+  command: rsync "{{item.rsync}}{{item.filename}} {{deb_install_url_download_directory}}"
   when: item.rsync is defined
   with_items:
     packages
