@@ -18,7 +18,7 @@
 - name: Install packages
   command: >
     /usr/bin/dpkg --skip-same-version -i
-    "{{deb_install_url_download_directory}}/{{item.filename}}"
+    "{{deb_install_url_download_directory}}{{item.filename}}"
   register: install_result
   changed_when: "'already installed' not in install_result.stderr"
   with_items:
