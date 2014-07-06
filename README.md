@@ -1,17 +1,35 @@
-ansible-role-deb_install_url
+deb_get
 ==========
+
+Requirements
+------------
+
+rsync if using it to fetch the debs that are to be installed.
 
 Description
 ------------
-Extremely simple role for downloading and installing debian packages from URLs
-with ansible. I use this to download and install debs for the silver searcher
-(ag) and vagrant for example.
+Extremely simple role for downloading Debian packages via HTTP or rsync and and
+installing them in the same go. Useful for installing debs when there is no
+package repository for the files, for example the silver searcher (ag) and
+Vagrant are distributed this way.
 
-Example usage
+Role Variables
+--------------
+deb_install_url_download_directory: The download directory for packages.
+Defaults to /tmp.
+
+Example playbook
 -------------
-    - role: deb_install_url
-      packages:
-        - { url: 'https://github.com/downloads/ggreer/the_silver_searcher/',
-            filename: the-silver-searcher_0.7.3-3_i386.deb }
-        - { url: 'https://dl.bintray.com/mitchellh/vagrant/',
-            filename: vagrant_1.5.3_x86_64.deb }
+    - hosts: servers
+      roles:
+        - role: deb_install_url
+          packages:
+            - { url: 'https://github.com/downloads/ggreer/the_silver_searcher/',
+                filename: the-silver-searcher_0.7.3-3_i386.deb }
+            - { rsync: 'server.example.com:/srv/packages/',
+                filename: packagename_1.2.3_x86_64.deb }
+
+License
+-------
+
+MIT
