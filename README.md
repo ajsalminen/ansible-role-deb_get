@@ -15,14 +15,14 @@ Vagrant are distributed this way.
 
 Role Variables
 --------------
-deb_install_url_download_directory: The download directory for packages.
+deb_get_download_directory: The download directory for packages.
 Defaults to /tmp.
 
 Example playbook
 -------------
     - hosts: servers
       roles:
-        - role: deb_install_url
+        - role: deb_get
           packages:
             - { url: 'https://github.com/downloads/ggreer/the_silver_searcher/',
                 filename: the-silver-searcher_0.7.3-3_i386.deb }

@@ -3,23 +3,19 @@
 - name: Download packages via HTTP
   get_url:
     url: "{{item.url}}{{item.filename}}"
-    dest: "{{deb_install_url_download_directory}}"
+    dest: "{{deb_get_download_directory}}"
     force: no
   when: item.url is defined
   with_items:
     packages
 
 - name: Download packages via rsync
-  command: rsync {{item.rsync}}{{item.filename}} {{deb_install_url_download_directory}}
+  command: rsync {{item.rsync}}{{item.filename}} {{deb_get_download_directory}}
   when: item.rsync is defined
   with_items:
     packages
 
 - name: Install packages
-  command: >
-    /usr/bin/dpkg --skip-same-version -i
-    "{{deb_install_url_download_directory}}{{item.filename}}"
-  register: install_result
-  changed_when: "'already installed' not in install_result.stderr"
+  apt: deb="{{deb_get_download_directory}}{{item.filename}}"
   with_items:
     packages

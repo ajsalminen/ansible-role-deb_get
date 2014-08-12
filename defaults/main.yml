@@ -1,2 +1,2 @@
 ---
-deb_install_url_download_directory: /tmp/
+deb_get_download_directory: /tmp/
