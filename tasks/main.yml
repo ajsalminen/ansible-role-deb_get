@@ -8,7 +8,7 @@
   when: item.url is defined
   with_items:
     packages
-  always_run: yes
+  check_mode: no
 
 - name: Download packages via rsync
   command: rsync {{item.rsync}}{{item.filename}} {{deb_get_download_directory}}
