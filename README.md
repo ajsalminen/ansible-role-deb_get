@@ -28,6 +28,8 @@ Example playbook
                 filename: the-silver-searcher_0.7.3-3_i386.deb }
             - { rsync: 'server.example.com:/srv/packages/',
                 filename: packagename_1.2.3_x86_64.deb }
+            - { scp: '/path/to/storage',
+                filename: packagename_1.2.3_x86_64.deb }
 
 License
 -------

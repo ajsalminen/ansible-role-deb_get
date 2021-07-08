@@ -16,6 +16,12 @@
   with_items:
     packages
 
+- name: Upload packages from current host via scp
+  local_action: shell scp {{item.scp}}{{item.filename}} {{inventory_hostname}}:{{deb_get_download_directory}}
+  when: item.scp is defined
+  with_items:
+    packages
+
 - name: Install packages
   apt: deb="{{deb_get_download_directory}}{{item.filename}}"
   with_items:
